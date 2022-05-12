@@ -1,0 +1,11 @@
+---
+- name: "Run the rsync backup script for falcon drives"
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - cron:
+        name: "Falcon share backups"
+        minute: "0"
+        hour: "23"
+        job: "/opt/scripts/backup/local_external_hd_sync.sh > /dev/null"
